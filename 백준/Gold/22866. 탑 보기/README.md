@@ -72,3 +72,10 @@
 
 <p>만약 볼 수 있는 건물의 개수가 1개 이상이라면 <mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$i$</span></mjx-container>번째 건물에서 거리가 가장 가까운 건물의 번호 중 작은 번호로 출력한다.</p>
 
+### 풀이
+  <h2>스택 자료구조를 이용하여 진행한다. 먼저 오른쪽에서 왼쪽 방향으로 건물이 보이는 걸 확인하기위해 반복문을 첫번째 빌딩부터 시작, 왼쪽에서부터 오른쪽 방향으로 보이는 건물은 반복문을 반대로 진행</h2>
+  <h2>1. 스택이 비어 있으면 건물을 스택에 담는다 (건물의 번호, 건물의 높이)</h2>
+  <h2>2. 현재 빌딩과 스택의 빌딩을 비교해서</h2>
+  <h2>	- 만약 현재 빌딩이 크다 -> 현재 빌딩보다 작은 빌딩이 나올때까지 스택에서 팝(자기보다 작은 건물을 어짜피 안보인다)</h2>
+  <h2> 	- 만약 현재 빌딩이 작다 -> 스택에 들어있는 빌딩들은 현재 빌딩이 볼 수 있는 빌딩들이다(자기보다 큰 건물만 안에 있음)</h2>
+
