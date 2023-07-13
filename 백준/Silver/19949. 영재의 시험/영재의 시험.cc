@@ -24,6 +24,15 @@ void SLV(int idx,string visited){
         if(cCount >= 5) ans++;
         return;
     }
+    if(visited.length() ==6 ){
+        int cCount = 0;
+        for(int i = 0;i<visited.length();i++){
+            if((visited[i]-'0') == Answer[i]){
+                cCount++;
+            }
+        }
+        if(cCount == 0) return;
+    }
     for(int i = 1;i<=5;i++){
         SLV(idx+1,visited+to_string(i));
     }
