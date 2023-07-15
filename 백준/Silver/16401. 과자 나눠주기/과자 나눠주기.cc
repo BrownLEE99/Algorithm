@@ -6,6 +6,9 @@
 using namespace std;
 int M,N;
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
     cin >> M >> N;
     vector<int> snack(N,0);
     int s = 0;
