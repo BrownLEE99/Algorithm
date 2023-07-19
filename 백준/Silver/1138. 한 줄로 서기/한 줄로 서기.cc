@@ -6,40 +6,24 @@
 #include <deque>
 #include <queue>
 using namespace std;
-int H[10];
-int CHECK[10];
 int N;
-void PICK(vector<int> v){
-    if(v.size() == N){
-        
-        for(int i = 0;i<v.size();i++){
-            int cnt = 0;
-            for(int j = 0;j<i;j++){
-                if(v[j] > v[i]) {
-                    cnt++;
-                }
-            }
-            if(H[v[i]] != cnt) return ;
-        }
-        for(int i = 0;i<v.size();i++){
-            cout << v[i] << " ";
-        }
-        return ;
-    }
-    for(int i = 1;i<= N;i++){
-        if(CHECK[i]) continue;
-        CHECK[i] = true;
-        v.push_back(i);
-        PICK(v);
-        v.pop_back();
-        CHECK[i] = false;
-    }
-}
+int H[10];
 int main(){
     cin >> N;
-    for(int i = 1;i<=N;i++){
-        cin >> H[i];
+    for(int i = 0;i<N;i++){
+        int h;
+        cin >> h;
+        for(int j =0;j<N;j++){
+            if(h == 0 && H[j] == 0){
+                H[j] = i+1;
+                break;
+            }
+            else if(H[j] == 0){
+                h--;
+            }
+        }
     }
-    vector<int> v;
-    PICK(v);
+    for(int i = 0;i<N;i++){
+        cout << H[i] << " ";
+    }
 }
