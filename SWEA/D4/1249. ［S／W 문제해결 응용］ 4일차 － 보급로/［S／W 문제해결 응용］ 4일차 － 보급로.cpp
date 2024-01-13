@@ -40,7 +40,7 @@ int SLV()
     {
         vector <int> v = pq.top();
         pq.pop();
-
+		if(v[0] == N && v[1] == N) break;
         for(int i = 0; i < 4; ++i)
         {
             int nx = v[0] + dx[i];
