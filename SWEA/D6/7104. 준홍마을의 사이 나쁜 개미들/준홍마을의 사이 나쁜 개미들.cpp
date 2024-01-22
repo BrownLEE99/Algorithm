@@ -20,7 +20,7 @@ void init() {
     }
     candidate.clear();
 }
-
+ 
 int maxflow(int source,int sink) {
     int answer =0 ;
     while(1) {
@@ -54,6 +54,7 @@ int maxflow(int source,int sink) {
         if(f == 0) break;
         for(int i = sink; i != source; i = visited[i]) {
             flow[visited[i]][i] += f;
+            flow[i][visited[i]] += f;
         }
         answer += f;
     }
@@ -63,10 +64,10 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-
+ 
     int test_case;
     cin >> test_case;
-
+ 
     for(int t = 1; t <= test_case; ++t){
         init();
         cin >> K >> N >> M;
