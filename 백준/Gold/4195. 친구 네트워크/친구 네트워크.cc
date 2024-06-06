@@ -2,27 +2,24 @@
 #include <algorithm>
 #include <unordered_map>
 using namespace std;
-unordered_map<string,string> um;
-unordered_map<string,int> nums;
-string parent[200002];
-int depth [200002];
+unordered_map<string,int> um;
+int parent[200002];
+int sizes [200002];
 int N,cnt;
-string find_parent(string node) {
-    if(um[node] == node) {
+int find_parent(int node) {
+    if(parent[node] == node) {
         return node;
     }
-    return um[node] = find_parent(um[node]);
+    return parent[node] = find_parent(parent[node]);
 }
-void make_union(string x, string y) {
+void make_union(int x, int y) {
 
     x = find_parent(x);
     y = find_parent(y);
-
-    if(x == y) return;
-
-    um[y] = x;
-    nums[x] += nums[y];
-
+    if(x == y) return ;
+    if( x > y) swap(x,y);
+    sizes[x] += sizes[y];
+    parent[y] = x;
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -34,20 +31,25 @@ int main() {
     for(int t = 0 ; t < test_case; t++) {
         cin >> N;
         um.clear();
-        nums.clear();
+        cnt = 1;
         string a,b;
         for(int i = 0; i < N; i++ ){
             cin >> a >> b;
             if(um.count(a) == 0) {
-                um.insert({a,a});
-                nums.insert({a,1});
+                um[a] = cnt++;
+                parent[um[a]] = um[a];
+                sizes[um[a]] = 1;
             }
             if(um.count(b) == 0) {
-                um.insert({b,b});
-                nums.insert({b,1});
+                um[b] = cnt++;
+                parent[um[b]] = um[b];
+                sizes[um[b]] = 1;
             }
-            make_union(a,b);
-            cout << nums[find_parent(a)]<<"\n";
+            make_union(um[a],um[b]);
+            int x = find_parent(um[a]);
+            int y = find_parent(um[b]);
+            cout << max(sizes[x],sizes[y]) << "\n";
+            // cout << a << ":" <<um[a] << " " << b << ":" << um[b] << "\n";
         }
     }
 }
